@@ -9,9 +9,9 @@ public class Controller
 	private MarshmallowMonster myMonster;//All data members should be private
 	
 	//Constructors initialize data members!
-	public Controller()
+	public Controller()//Constructor call
 	{
-		myMonster = new MarshmallowMonster("perp", 2.0, 4, true, 1);//The monster's name
+		myMonster = new MarshmallowMonster("Perp", 2.0, 4, true, 1);
 	}
 	
 	public void start()
