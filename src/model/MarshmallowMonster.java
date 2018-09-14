@@ -4,10 +4,10 @@ public class MarshmallowMonster
 {
 	//Declaration section
 	private String name;
-	private double legCount;
-	private int eyeCount;
-	private boolean hasNoses;
-	private int armCount;
+	private String legCount;
+	private String eyeCount;
+	private String hasNoses;
+	private String armCount;
 	
 	public MarshmallowMonster()
 	{
@@ -20,7 +20,7 @@ public class MarshmallowMonster
 		//Right side has to do with class, and right side has to do with parameter
 	}
 	
-	public MarshmallowMonster(String name, double legCount, int eyeCount, boolean hasNose, int arms)//Constructor definition
+	public MarshmallowMonster(String name, String legCount, String eyeCount, String hasNose, String arms)//Constructor definition
 	{
 		this.name = name;
 		this.legCount = legCount;
@@ -34,22 +34,22 @@ public class MarshmallowMonster
 		return name;//Return is an immediate exit point for a method(Should be the method's last line)
 	}
 	
-	public double getLegCount()//Second getter
+	public String getLegCount()//Second getter
 	{
 		return legCount;
 	}
 	
-	public int getEyeCount()//Third getter
+	public String getEyeCount()//Third getter
 	{
 		return eyeCount;
 	}
 	
-	public boolean getHasNose()//Fourth getter
+	public String getHasNose()//Fourth getter
 	{
 		return hasNoses;
 	}
 	
-	public int getArms()//Fifth getter
+	public String getArms()//Fifth getter
 	{
 		return armCount;
 	}
@@ -60,22 +60,22 @@ public class MarshmallowMonster
 		//The = takes what's on the right and shoves it to the left
 	}
 	
-	public void setLegCount(double legCount)//Second setter
+	public void setLegCount(String legCount)//Second setter
 	{
 		this.legCount = legCount;
 	}
 	
-	public void setEyeCount(int eyeCount)//Third setter
+	public void setEyeCount(String eyeCount)//Third setter
 	{
 		this.eyeCount = eyeCount;
 	}
 	
-	public void setHasNose(boolean hasNose)//Fourth setter
+	public void setHasNose(String hasNose)//Fourth setter
 	{
 		this.hasNoses = hasNose;
 	}
 	
-	public void setArms(int Arms)//Fifth setter
+	public void setArms(String Arms)//Fifth setter
 	{
 		this.armCount = Arms;
 	}
