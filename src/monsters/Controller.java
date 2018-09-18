@@ -29,6 +29,7 @@ public class Controller
 		//JOptionPane.showMessageDialog(null, "What's your monster's name?");
 		//String name = inputScanner.nextLine();//Allows user input
 		//_______________________________________________________________________________
+		
 		String name = JOptionPane.showInputDialog("What's your monster's name");
 		//if (validInput)userInput)
 		userMonster.setName(name);//Sets monster name
@@ -50,19 +51,28 @@ public class Controller
 		//System.out.println(userMonster.getName() + " has " + userMonster.getEyeCount() + " eyes now");
 		JOptionPane.showMessageDialog(null, userMonster.getName() + " has " + userMonster.getEyeCount() + " eyes now");
 		//_____________________________________________________________________________________________________________
+		//while (!hasNose.equals("True") || !hasNose.equals("False"))
 		String hasNose = JOptionPane.showInputDialog("Does " + userMonster.getName() + " have a nose? (True or False)");
-		userMonster.setHasNose(hasNose);
-		if (hasNose.equals("True") || hasNose.equals("true") || hasNose.equals("T") || hasNose.equals("t"))//use .equal for strings, not ==
-		{
-			JOptionPane.showMessageDialog(null, userMonster.getName() + " now has a nose");
-		}
-		else if (hasNose.equals("False") || hasNose.equals("false") || hasNose.equals("F") || hasNose.equals("f"))
-		{
-			JOptionPane.showMessageDialog(null, userMonster.getName() + " does not have a nose");
-		}
-		else
-		{
-			JOptionPane.showMessageDialog(null, "Please choose True or False");
+		//while (!hasNose.equals("True") || !hasNose.equals("False"))
+		//{
+			if (hasNose.equals("True") || hasNose.equals("true") || hasNose.equals("T") || hasNose.equals("t"))//use .equal for strings, not ==
+			{
+				userMonster.setHasNose("True");
+				JOptionPane.showMessageDialog(null, userMonster.getName() + " now has a nose");
+			}
+			else if (hasNose.equals("False") || hasNose.equals("false") || hasNose.equals("F") || hasNose.equals("f"))
+			{
+				userMonster.setHasNose("False");
+				JOptionPane.showMessageDialog(null, userMonster.getName() + " does not have a nose");
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "Please choose True or False");
+				//while (!hasNose.equals("True") || !hasNose.equals("False"))
+				//{
+				
+				//}
+			//}
 		}
 		//________________________________________________________________________________
 	}
