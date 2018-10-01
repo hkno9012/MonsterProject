@@ -4,92 +4,104 @@ public class MarshmallowMonster
 {
 	//Declaration section
 	private String name;
-	private String legCount;
-	private String eyeCount;
-	private String hasNoses;
-	private String armCount;
+	private double legCount;
+	private int eyeCount;
+	private boolean hasNose;
+	private int armCount;
 	
-	public MarshmallowMonster()
+	//Constructor that initializes the myMonster object
+	public MarshmallowMonster(String name, double legCount, int eyeCount, boolean hasNose, int armCount)
 	{
-		//Default Constructor
-	}
-	
-	public MarshmallowMonster(String name)//Constructor
-	{
-		this.name = name;//Assigning a parameter into an instance
-		//Right side has to do with class, and right side has to do with parameter
-	}
-	
-	public MarshmallowMonster(String name, String legCount, String eyeCount, String hasNose, String arms)//Constructor definition
-	{
-		this.name = name;
+		this.name = name;//this. is an implicit reference to the object
 		this.legCount = legCount;
 		this.eyeCount = eyeCount;
-		this.hasNoses = hasNose;
-		this.armCount = arms;
+		this.hasNose = hasNose;
+		this.armCount = armCount;
 	}
 	
+	//Constructor that initializes the userMonster object
+	public MarshmallowMonster()
+	{
+		
+	}
+//_______________________________________________________________________________________________________
+	//Getters can never be of type void
+	//Getters return the value of the attribute
 	public String getName()//First getter
 	{
 		return name;//Return is an immediate exit point for a method(Should be the method's last line)
 	}
-	
-	public String getLegCount()//Second getter
+	//-----------------------------------------------------------------------------------------------
+	public double getLegCount()//Second getter
 	{
 		return legCount;
 	}
-	
-	public String getEyeCount()//Third getter
+	//----------------------------------------------------------------------------------------------
+	public int getEyeCount()//Third getter
 	{
 		return eyeCount;
 	}
-	
-	public String getHasNose()//Fourth getter
+	//------------------------------------------------------------------------------------------------
+	public boolean getHasNose()//Fourth getter
 	{
-		return hasNoses;
+		return hasNose;
 	}
-	
-	public String getArms()//Fifth getter
+	//-----------------------------------------------------------------------------------------------
+	public int getArmCount()//Fifth getter
 	{
 		return armCount;
 	}
-	
+//_______________________________________________________________________________________________
+	//Setters are always of type void
+	//Setters assign a parameter to the attribute
 	public void setName(String name)//First setter(not all programs need setters)
 	{
-		this.name = name;//this. gives the variable value to the current object.
+		this.name = name;//this. gives the variable value (parameter) (right) to the current object (attribute) (left).
 		//The = takes what's on the right and shoves it to the left
 	}
-	
-	public void setLegCount(String legCount)//Second setter
+	//---------------------------------------------------------------------------------------------
+	public void setLegCount(double legCount)//Second setter
 	{
 		this.legCount = legCount;
 	}
-	
-	public void setEyeCount(String eyeCount)//Third setter
+	//-------------------------------------------------------------------------------------------
+	public void setEyeCount(int eyeCount)//Third setter
 	{
 		this.eyeCount = eyeCount;
 	}
-	
-	public void setHasNose(String hasNose)//Fourth setter
+	//-------------------------------------------------------------------------------------------
+	public void setHasNose(boolean hasNose)//Fourth setter
 	{
-		this.hasNoses = hasNose;
+		this.hasNose = hasNose;
 	}
-	
-	public void setArms(String Arms)//Fifth setter
+	//---------------------------------------------------------------------------------------
+	public void setArmCount(int ArmCount)//Fifth setter
 	{
-		this.armCount = Arms;
+		this.armCount = ArmCount;
 	}
-	
+//__________________________________________________________________________________________________
+	public String changeBoolean()
+	{
+		String changedFromBoolean;
+		if(hasNose == true)
+		{
+			changedFromBoolean = "has a nose";
+		}
+		else
+		{
+			changedFromBoolean = "doesn't have a nose";
+		}
+		return changedFromBoolean;//This is what will show up when you call the method
+	}
+//_____________________________________________________________________________________
 	public String toString()
 	{
-		String description = "This monster is named " + name
-								+ "\n He has " + legCount + " legs"
-								+ "\n He has " + eyeCount + " eyes"
-								+ "\n He has " + hasNoses + " nose, unlike some monsters"
-								+ "\n He has " + armCount + " arm!"
-								+ "\n His favorite joke is: "
-								+ "Your future";
+		String myMonsterDescription = "This monster is named " + name
+									+ "\n He has " + legCount + " legs"
+									+ "\n He has " + eyeCount + " eyes"
+									+ "\n He " + changeBoolean()
+									+ "\n He has " + armCount + " arms";
 		
-		return description;
+		return myMonsterDescription;
 	}
 }

@@ -1,111 +1,153 @@
 package monsters;
 
 import model.MarshmallowMonster;
-import java.util.Scanner;
+//import java.util.Scanner;Nothing with JOptionPane is needed
 import javax.swing.JOptionPane;
 
 public class Controller
 {
 	//Data member section
 	//Declaration section
-	private MarshmallowMonster myMonster;//All data members should be private
+	//All data members should be private
+	private MarshmallowMonster myMonster;//myMonster object is initialized, and will then be constructed
 	private MarshmallowMonster userMonster;
-	
-	//Constructors initialize data members!
-	public Controller()//Constructor call
+//_____________________________________________________________________________
+	//Constructors construct object: put all the objects in here (for now)
+	//Constructors must have the same name as the class, and they can't have an explicit return type
+	public Controller()
 	{
-		myMonster = new MarshmallowMonster("Perp", "2.0", "4", "true", "1");
+		myMonster = new MarshmallowMonster("Larry", 2.5, 4, true, 6);
+		//A new MarshmallowMonster object is constructed with these parameters
 		userMonster = new MarshmallowMonster();
+		//Another new MarshmallowMonster object is constructed, but no parameters
 	}
-	
+//____________________________________________________________________________________
 	public void start()
 	{
-		JOptionPane.showMessageDialog(null, myMonster);//Creates a popup with text
-		System.out.println(myMonster);
-		
-		Scanner inputScanner = new Scanner(System.in);//Must declare the scanner above the inputs
-		
-		//System.out.println("What's your monster's name?");//Prompt
-		//JOptionPane.showMessageDialog(null, "What's your monster's name?");
-		//String name = inputScanner.nextLine();//Allows user input
-		//_______________________________________________________________________________
-		
+		JOptionPane.showMessageDialog(null, myMonster);//Uses the toString method in the models
+		questions();
+		JOptionPane.showMessageDialog(null, userMonster);
+	}
+//______________________________________________________________________________________________________
+	public void questions()
+	{
+		questionsName();
+		questionsLegCount();
+		questionsEyeCount();
+		questionsHasNose();
+		questionsArmCount();
+	}
+//_______________________________________________________________________________________________________
+	public void questionsName()
+	{
 		String name = JOptionPane.showInputDialog("What's your monster's name");
-		//if (validInput)userInput)
 		userMonster.setName(name);//Sets monster name
-		//System.out.println("Your monster's name is now " + userMonster.getName());//Repeats input to user
 		JOptionPane.showMessageDialog(null, "Your monster's name is now " + userMonster.getName());
-		//____________________________________________________________________________________________
-		//System.out.println("How many legs does " + userMonster.getName() + " have? (partial legs are allowed)");//Prompts user and adds monster name with it
-		String legCount = JOptionPane.showInputDialog("How many legs does " + userMonster.getName() + " have? (Partial legs are allowed)");
-		//String legCount = inputScanner.next();
-		userMonster.setLegCount(legCount);
-		//System.out.println(userMonster.getName() + " has " + userMonster.getLegCount() + " legs");
-		JOptionPane.showMessageDialog(null, userMonster.getName() + " has " + userMonster.getLegCount() + " legs");
-		//_______________________________________________________________________________________________________
-		//System.out.println("How about " + userMonster.getName() + "'s number of eyes?");
-		//JOptionPane.showMessageDialog(null, "How about " + userMonster.getName() + "'s number of eyes?");
-		//int eyeCount = inputScanner.nextInt();
-		String eyeCount = JOptionPane.showInputDialog("How about the number of eyes " + userMonster.getName() + " has?");
-		userMonster.setEyeCount(eyeCount);
-		//System.out.println(userMonster.getName() + " has " + userMonster.getEyeCount() + " eyes now");
-		JOptionPane.showMessageDialog(null, userMonster.getName() + " has " + userMonster.getEyeCount() + " eyes now");
-		//_____________________________________________________________________________________________________________
-		//while (!hasNose.equals("True") || !hasNose.equals("False"))
-		String hasNose = JOptionPane.showInputDialog("Does " + userMonster.getName() + " have a nose? (True or False)");
-		//while (!hasNose.equals("True") || !hasNose.equals("False"))
-		//{
-			if (hasNose.equals("True") || hasNose.equals("true") || hasNose.equals("T") || hasNose.equals("t"))//use .equal for strings, not ==
+	}
+//--------------------------------------------------------------------------------------------------------------
+		public void questionsLegCount()
+		{
+			String legCountInput = JOptionPane.showInputDialog(null, "How many legs does " + userMonster.getName() + " have? (Partial legs are allowed)");
+			if(validDouble(legCountInput))//Tests to see if the input is a double
 			{
-				userMonster.setHasNose("True");
-				JOptionPane.showMessageDialog(null, userMonster.getName() + " now has a nose");
+				double legCount = Double.parseDouble(legCountInput);//Changes the String entered by the user into a Double
+				userMonster.setLegCount(legCount);
+				JOptionPane.showMessageDialog(null, userMonster.getName() + " has " + userMonster.getLegCount() + " legs");
 			}
-			else if (hasNose.equals("False") || hasNose.equals("false") || hasNose.equals("F") || hasNose.equals("f"))
+			else//If it's not, then the question will be asked again
 			{
-				userMonster.setHasNose("False");
-				JOptionPane.showMessageDialog(null, userMonster.getName() + " does not have a nose");
+				questionsLegCount();
+			}
+		}
+//-----------------------------------------------------------------------------------------------------------------
+		public void questionsEyeCount()
+		{
+			String eyeCountInput = JOptionPane.showInputDialog(null, "How about " + userMonster.getName() + "'s number of eyes?");
+			if(validInt(eyeCountInput))
+			{
+				int eyeCount = Integer.parseInt(eyeCountInput);
+				userMonster.setEyeCount(eyeCount);
+				JOptionPane.showMessageDialog(null, userMonster.getName() + " has " + userMonster.getEyeCount() + " eyes now");
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(null, "Please choose True or False");
-				//while (!hasNose.equals("True") || !hasNose.equals("False"))
-				//{
-				
-				//}
-			//}
+				questionsEyeCount();
+			}
 		}
-		//________________________________________________________________________________
-	}
-	
-	public boolean validInt(String maybeInt)
+//-------------------------------------------------------------------------------------------------------------------
+		public void questionsHasNose()
+		{
+			String hasNoseInput = JOptionPane.showInputDialog(null, "Does " + userMonster.getName() + " have a nose?"
+															+ "(Type True or False)");
+			boolean hasNose = true;
+			String hasNoseStatus = "";//What will go in the message
+			if(hasNoseInput.equals("True") || hasNoseInput.equals("true") || hasNoseInput.equals ("T") || hasNoseInput.equals ("t"))
+				//Remember to use .equals when testing String equality
+			{
+				hasNoseStatus = " does";
+				userMonster.setHasNose(hasNose);
+				JOptionPane.showMessageDialog(null, userMonster.getName() + hasNoseStatus + " have a nose");
+			}
+			else if(hasNoseInput.equals("False") || hasNoseInput.equals("false") || hasNoseInput.equals("F") || hasNoseInput.equals("f"))
+			{
+				hasNose = false;
+				hasNoseStatus = " doesn't";
+				userMonster.setHasNose(hasNose);
+				JOptionPane.showMessageDialog(null, userMonster.getName() + hasNoseStatus + " have a nose");
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "Type true or false");
+				questionsHasNose();
+			}
+		}
+//-------------------------------------------------------------------------------------------------------------
+		public void questionsArmCount()
+		{
+			String armCountInput = JOptionPane.showInputDialog(null, "How many arms does " + userMonster.getName() + " have?");
+			if(validInt(armCountInput))
+			{
+				int armCount = Integer.parseInt(armCountInput);
+				userMonster.setArmCount(armCount);
+				JOptionPane.showMessageDialog(null, userMonster.getName() + " now has " + userMonster.getArmCount() + " arms");
+			}
+			else
+			{
+				questionsArmCount();
+			}
+		}
+//__________________________________________________________________________________________________________________
+	private boolean validInt(String maybeInt)
 	{
 		boolean isValid = false;
 		
 		try
 		{
-			Integer.parseInt(maybeInt);
+			Integer.parseInt(maybeInt);//If the String can turn into an integer, then it's valid
 			isValid = true;
 		}
-		catch (NumberFormatException error)
+		//If this particular exception is caught, fix it with the following
+		catch (NumberFormatException exception)//Always use this exception with parse methods
 		{
-			JOptionPane.showMessageDialog(null, "You need to type in a whole number");
+			JOptionPane.showMessageDialog(null, "Type in a whole number");
 		}
 		
 		return isValid;
 	}
-	
-	public boolean validDouble(String mightBeDouble)
+	//-------------------------------------------------------------------------------------
+	private boolean validDouble(String maybeDouble)
 	{
 		boolean isValid = false;
 		
 		try
 		{
-			Double.parseDouble(mightBeDouble);
+			Double.parseDouble(maybeDouble);//If the String can turn into a double, then it's valid
 			isValid = true;
 		}
-		catch (NumberFormatException error)
+		//If this particular exception is thrown, catch it with the following
+		catch (NumberFormatException exception)//Always use this exception with parse methods
 		{
-			JOptionPane.showMessageDialog(null, "Type in a deimal value");
+			JOptionPane.showMessageDialog(null, "Type in a decimal value");
 		}
 		
 		return isValid;
